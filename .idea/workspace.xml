@@ -4,7 +4,77 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="649725de-8e69-4306-89bb-fc6ad4233b23" name="Changes" comment="" />
+    <list default="true" id="649725de-8e69-4306-89bb-fc6ad4233b23" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.firebase/hosting.LmZpcmViYXNlL3N0cHAtZDlkY2IvaG9zdGluZw.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/.npmrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/.vite/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/_app/immutable/assets/_layout.Bujz5iZX.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/_app/immutable/assets/_page.DRXETXMS.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/chunks/client.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/chunks/exports.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/chunks/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/chunks/internal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/chunks/ssr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/chunks/store.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/entries/fallbacks/error.svelte.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/entries/pages/_layout.svelte.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/entries/pages/_page.svelte.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/entries/pages/search/_page.svelte.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/internal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/manifest-full.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/manifest.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/nodes/0.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/nodes/1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/nodes/2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/nodes/3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/functions/server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/.vite/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/_app/immutable/assets/0.fZbHum85.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/_app/immutable/assets/2.DRXETXMS.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/_app/immutable/assets/_layout.Bujz5iZX.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/_app/immutable/assets/_page.DRXETXMS.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/_app/immutable/chunks/entry.CytRNOod.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/_app/immutable/chunks/index.CiKJv4EK.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/_app/immutable/chunks/scheduler.Df_9wCsF.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/_app/immutable/chunks/store.BfjfVAg0.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/_app/immutable/entry/app.PPaYzp0A.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/_app/immutable/entry/start.ChQVhm8s.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/_app/immutable/nodes/0.Cu3vWzUT.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/_app/immutable/nodes/1.C831pdEA.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/_app/immutable/nodes/2.BVqWcwdC.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/_app/immutable/nodes/3.YZKxHVvU.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/_app/version.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/cat.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/favicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebase/stpp-d9dcb/hosting/lofigirl.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.firebaserc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/firebase.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/firestore.indexes.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/firestore.rules" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/functions/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/functions/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/functions/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/functions/src/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/functions/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/clientApp.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/PeDoFile/index.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/SearchItem/DetailedView.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage.rules" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/Button/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/Button/index.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/SearchItem/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/SearchItem/index.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/SearchItem/tempObject.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/SearchItem/tempObject.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/Slide/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/Slide/index.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/search/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/search/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/store.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,17 +86,21 @@
         <option value="CSS File" />
         <option value="+layout" />
         <option value="notes" />
-        <option value="index" />
         <option value="link" />
         <option value="heading" />
         <option value="image" />
         <option value="index.svelte" />
+        <option value="detailedView" />
+        <option value="index" />
         <option value="TypeScript File" />
       </list>
     </option>
   </component>
   <component name="FormatOnSaveOptions">
     <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="OptimizeOnSaveOptions">
     <option name="myRunOnSave" value="true" />
@@ -35,14 +109,19 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2l7EDHLJ8DOvYIhrsAG0Y2VqLyl" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/jonastenora/code/stp&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -59,6 +138,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -74,7 +158,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.18034.50" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23339.15" />
       </set>
     </attachedChunks>
   </component>
@@ -91,11 +175,24 @@
       <workItem from="1724922589633" duration="4321000" />
       <workItem from="1725119972139" duration="25586000" />
       <workItem from="1725612812469" duration="28000" />
-      <workItem from="1725955867962" duration="4617000" />
+      <workItem from="1725955867962" duration="7105000" />
+      <workItem from="1726068192806" duration="422000" />
+      <workItem from="1726406699856" duration="16183000" />
+      <workItem from="1726467519646" duration="9532000" />
+      <workItem from="1726485709030" duration="1130000" />
+      <workItem from="1726486875638" duration="3056000" />
+      <workItem from="1729511567076" duration="1253000" />
+      <workItem from="1730116978950" duration="462000" />
+      <workItem from="1731308905544" duration="2850000" />
+      <workItem from="1731314069838" duration="156000" />
+      <workItem from="1731329167875" duration="231000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

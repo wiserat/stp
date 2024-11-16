@@ -4,7 +4,6 @@
 
 body {
     @apply bg-background;
-
 }
 
 .medievalsharp-regular {
@@ -13,21 +12,34 @@ body {
     font-style: normal;
 }
 
-::-webkit-scrollbar {
-    display: none;
-}
-
-/* Hide scrollbar for the entire page */
-body {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
+/* Hide scrollbar */
 .hide-scrollbar {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-    display: none;
+    display: none; /* Chrome, Safari, and Opera */
+}
+
+/* Show scrollbar class */
+.show-scrollbar {
+    scrollbar-width: thin; /* For Firefox, sets the scrollbar width to a visible state */
+    -ms-overflow-style: auto; /* Default for Internet Explorer */
+
+    /* Custom scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+}
+
+.show-scrollbar::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar for WebKit */
+    height: 12px; /* Height of the scrollbar */
+}
+
+.show-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5); /* Scrollbar thumb color */
+    border-radius: 10px;
+}
+
+.show-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1); /* Scrollbar track color */
 }

@@ -5,7 +5,7 @@
     export let url: string;
 </script>
 
-<button class="bg-text text-buttonText duration-300 px-7 hover:scale-105 py-3 rounded-xl text-2xl font-medium"
+<button class="bg-text text-buttonText duration-300 px-7 hover:scale-105 h-full rounded-xl text-xl font-medium"
         on:click={() => {goto(url)}}>
     <slot/>
 </button>

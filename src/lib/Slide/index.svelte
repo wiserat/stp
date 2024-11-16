@@ -24,7 +24,7 @@
 
 <div class="fixed w-full h-full z-40 flex flex-row bg-black/50 backdrop-blur slide-container {$slideToggle ? 'visible' : ''}">
     <div class="w-[45vw] pl-24 pr-8 flex flex-col items-center justify-center gap-5 bg-text text-buttonText border-r-2 border-buttonText slide-content">
-        <h1 class="medievalsharp-regular w-full pl-4 text-5xl">{info[$infoId].heading}</h1>
+        <h1 class="tracking-tight w-full text-5xl">{info[$infoId].heading}</h1>
         <p class="text-lg tracking-tight leading-tight">{info[$infoId].text}</p>
         <button class="medievalsharp-regular text-5xl mt-7 hover:scale-110 duration-300"
                 on:click={() => { $slideToggle = !$slideToggle; }}>X

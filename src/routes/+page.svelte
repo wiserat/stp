@@ -2,8 +2,10 @@
     import Button from "$lib/Button/index.svelte";
     import LandingBento from "$lib/LandingBento/index.svelte";
     import Slide from "$lib/Slide/index.svelte";
-    import Heading from "$lib/LandingBento/heading.svelte";
     import Image from "$lib/LandingBento/image.svelte";
+    import {info} from "$lib/Slide/info.ts";
+
+    let search = '';
 </script>
 
 
@@ -12,31 +14,35 @@
     <div class="flex flex-col items-center justify-center w-full h-full">
         <div class="flex flex-row items-center justify-center w-full h-full p-32 gap-32">
             <LandingBento uniqueId="0">
-                <Heading>Story</Heading>
+                {info[0].heading}
                 <Image src="./cat.gif"/>
             </LandingBento>
             <LandingBento uniqueId="1">
-                No
+                {info[1].heading}
             </LandingBento>
         </div>
         <div class="flex flex-row items-center justify-center w-full h-full p-32 gap-32">
             <LandingBento uniqueId="2">
-                Note
+                {info[2].heading}
             </LandingBento>
             <LandingBento uniqueId="3">
-                Not
+                {info[3].heading}
             </LandingBento>
         </div>
     </div>
 
-    <div class="absolute inset-0 flex z-0 flex-col text-center items-center justify-center gap-4">
-        <div class="text-text text-6xl medievalsharp-regular font-extrabold tracking-tight underline">Naughty Little
-            Cheater
+    <div class="absolute inset-0 flex z-0 flex-col text-center items-center justify-center gap-12">
+        <div class="text-text text-6xl  font-bold tracking-tight underline">Search for test
+            answers, <br> homeworks and other!
         </div>
-        <div class="mb-2 text-subText text-xl w-[50%] tracking-tight leading-tight">Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book.
+        <div class="flex flex-row items-center gap-2">
+            <input
+                    bind:value={search}
+                    class="border-[2.5px] border-button w-[25vw] bg-buttonText text-subText text-xl px-4 py-2 rounded-xl font-medium focus:border-subText duration-300 focus:ring-0 focus:shadow-none focus:outline-none"
+                    placeholder="Smrt krásných srnců ..."
+                    type="text"
+            >
+            <Button url="/search">Search</Button>
         </div>
-        <Button url="/search">Search</Button>
     </div>
 </div>

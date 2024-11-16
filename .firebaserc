@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "default": "stpp-d9dcb"
+  },
+  "targets": {},
+  "etags": {
+    "stpp-d9dcb": {
+      "extensionInstances": {}
+    }
+  },
+  "dataconnectEmulatorConfig": {}
+}
