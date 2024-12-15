@@ -4,6 +4,7 @@
     import Slide from "$lib/Slide/index.svelte";
     import Image from "$lib/LandingBento/image.svelte";
     import {info} from "$lib/Slide/info.ts";
+    import {infoId, slideToggle} from "../utils/store";
 
     let search = '';
 </script>
@@ -11,7 +12,7 @@
 
 <Slide/>
 <div class="bg-background h-[98vh] relative cursor-default hide-scrollbar">
-    <div class="flex flex-col items-center justify-center w-full h-full">
+    <!-- <div class="flex flex-col items-center justify-center w-full h-full">
         <div class="flex flex-row items-center justify-center w-full h-full p-32 gap-32">
             <LandingBento uniqueId="0">
                 {info[0].heading}
@@ -29,7 +30,7 @@
                 {info[3].heading}
             </LandingBento>
         </div>
-    </div>
+    </div> -->
 
     <div class="absolute inset-0 flex z-0 flex-col text-center items-center justify-center gap-12">
         <div class="text-text text-6xl  font-bold tracking-tight underline">Search for test
@@ -44,5 +45,9 @@
             >
             <Button url="/search">Search</Button>
         </div>
+        <button class="flex -mb-40 mt-32 flex-col underline text-subText tracking-tight items-center cursor-pointer z-10 justify-center"
+                on:click={() => {$slideToggle = !$slideToggle; $infoId = 4}}>
+                About our mission
+        </button>
     </div>
 </div>

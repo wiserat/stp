@@ -14,5 +14,9 @@ export const info = [
     {
         heading: "Contact Us",
         text: "If you have any questions or need further assistance, this section provides various ways to get in touch with us. Whether through email, phone, or live chat, our customer support team is here to help you. We value your feedback and are committed to providing prompt and effective solutions to any issues you may encounter. Don't hesitate to reach out to us – we're here to ensure you have the best experience possible."
+    },
+    {
+        heading: "Our mission",
+        text: "Our mission is to make school life easier for students by providing a platform to share notes, assignments, and study materials. Created by a student, for students, this app is about saving time and supporting each other when deadlines loom or inspiration runs dry. We’re building a community where collaboration and quick solutions help us navigate the challenges of education—because sometimes, a little help (or a shortcut) can make all the difference."
     }
 ];
