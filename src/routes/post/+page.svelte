@@ -2,6 +2,35 @@
     import { allCategories, allSchools, allSubjects } from "../../utils/store";
     import Category from "$lib/Category/index.svelte";
     import Button from "$lib/Button/index.svelte";
+    import { onMount } from "svelte";
+    import { user } from "$lib/utils";
+    import { goto } from "$app/navigation";
+    import { signOut, type User } from "firebase/auth";
+    import { auth } from "$lib/firebase";
+    import { db } from "$lib/firebase";
+    import { collection, addDoc } from "firebase/firestore";
+
+    let userData: User;
+    onMount(() => {
+        const unsubscribe = user.subscribe((firebaseUser: User | null) => {
+            if (!firebaseUser) {
+                goto("/login");
+            } else {
+                console.log(firebaseUser);
+                userData = firebaseUser;
+            }
+        });
+        return unsubscribe;
+    });
+
+    async function logout() {
+        try {
+            await signOut(auth);
+            goto("/login");
+        } catch (error: any) {
+            console.error("Error signing out:", error);
+        }
+    }
 
     let name: string = "";
     let description: string = "";
@@ -14,6 +43,37 @@
     let linkValidity: boolean[] = [true]; // Array to track validity of each link
 
     let fileInput: HTMLInputElement; // Reference to the hidden file input
+
+    async function createPost() {
+        try {
+            // Add a new document to the "posts" collection
+            const docRef = await addDoc(collection(db, "posts"), {
+                name,
+                description,
+                categories: selectedCategories,
+                subjects: selectedSubjects,
+                schools: selectedSchools,
+                links,
+                likes: 0,
+                views: 0,
+                // You can store metadata for files, if needed
+                // fileNames: files.map(file => file.name),
+                timestamp: new Date(),
+            });
+            await addDoc(collection(db, "posts", docRef.id, "comments"), {
+                // Initial comment data if needed, or leave empty
+                user: "system",
+                content: "This is the first comment.",
+                likes: 0,
+                timestamp: new Date(),
+            });
+
+            console.log("Document written with ID:", docRef.id);
+            // Reset form or redirect as needed
+        } catch (error) {
+            console.error("Error adding document:", error);
+        }
+    }
 
     function addLinkField() {
         if (links.length < 3) {
@@ -49,7 +109,10 @@
         event.preventDefault();
         isDragging = false;
         if (event.dataTransfer?.files) {
-            const newFiles = Array.from(event.dataTransfer.files).slice(0, 5 - files.length);
+            const newFiles = Array.from(event.dataTransfer.files).slice(
+                0,
+                5 - files.length,
+            );
             files = [...files, ...newFiles];
         }
     }
@@ -83,15 +146,31 @@
 <div class="h-[98vh] w-screen flex justify-center">
     <div class="flex w-[65vw] flex-col">
         <div class="flex flex-row gap-5 mt-10 pl-10">
-            <img src="./hannah.jpg" alt="" class="h-[20vh] rounded-2xl" />
+            <img
+                src={userData ? userData.photoURL : "./hannah.jpg"}
+                alt=""
+                class="h-[20vh] rounded-2xl"
+            />
             <div class="flex flex-col item pt-4">
-                <h1 class="text-6xl font-medium text-button mb-4">Julius Ceasar</h1>
+                <h1 class="text-6xl font-medium text-button mb-4">
+                    {userData ? userData.displayName : ""}
+                </h1>
                 <p class="text-subText text-xl">
-                    Number of uploaded documents: <span class="font-bold">19</span>
+                    Number of uploaded documents: <span class="font-bold"
+                        >19</span
+                    >
                 </p>
                 <p class="text-subText text-xl">
-                    Average rating of uploaded documents: <span class="font-bold">🔥12</span>
+                    Average rating of uploaded documents: <span
+                        class="font-bold">🔥12</span
+                    >
                 </p>
+                <button
+                    class="bg-button text-white px-3 py-2 rounded-xl font-medium text-sm mt-2 disabled:opacity-50 w-fit"
+                    on:click={() => {
+                        logout();
+                    }}>Logout</button
+                >
             </div>
         </div>
 
@@ -109,50 +188,87 @@
                 />
 
                 <div class="h-[11rem] justify-center flex flex-col gap-1 mt-4">
-                    <div class="flex flex-row overflow-x-auto hide-scrollbar gap-2">
+                    <div
+                        class="flex flex-row overflow-x-auto hide-scrollbar gap-2"
+                    >
                         {#each allCategories as category}
                             <button
                                 on:click={() => {
                                     if (selectedCategories.includes(category)) {
-                                        selectedCategories = selectedCategories.filter(c => c !== category);
+                                        selectedCategories =
+                                            selectedCategories.filter(
+                                                (c) => c !== category,
+                                            );
                                     } else {
-                                        selectedCategories = [...selectedCategories, category];
+                                        selectedCategories = [
+                                            ...selectedCategories,
+                                            category,
+                                        ];
                                     }
                                 }}
                             >
-                                <Category text={category} selected={selectedCategories.includes(category)} />
+                                <Category
+                                    text={category}
+                                    selected={selectedCategories.includes(
+                                        category,
+                                    )}
+                                />
                             </button>
                         {/each}
                     </div>
 
-                    <div class="flex flex-row overflow-x-auto hide-scrollbar gap-2 mt-2">
+                    <div
+                        class="flex flex-row overflow-x-auto hide-scrollbar gap-2 mt-2"
+                    >
                         {#each allSubjects as subject}
                             <button
                                 on:click={() => {
                                     if (selectedSubjects.includes(subject)) {
-                                        selectedSubjects = selectedSubjects.filter(s => s !== subject);
+                                        selectedSubjects =
+                                            selectedSubjects.filter(
+                                                (s) => s !== subject,
+                                            );
                                     } else {
-                                        selectedSubjects = [...selectedSubjects, subject];
+                                        selectedSubjects = [
+                                            ...selectedSubjects,
+                                            subject,
+                                        ];
                                     }
                                 }}
                             >
-                                <Category text={subject} selected={selectedSubjects.includes(subject)} />
+                                <Category
+                                    text={subject}
+                                    selected={selectedSubjects.includes(
+                                        subject,
+                                    )}
+                                />
                             </button>
                         {/each}
                     </div>
 
-                    <div class="flex flex-row overflow-x-auto hide-scrollbar gap-2 mt-2">
+                    <div
+                        class="flex flex-row overflow-x-auto hide-scrollbar gap-2 mt-2"
+                    >
                         {#each allSchools as school}
                             <button
                                 on:click={() => {
                                     if (selectedSchools.includes(school)) {
-                                        selectedSchools = selectedSchools.filter(s => s !== school);
+                                        selectedSchools =
+                                            selectedSchools.filter(
+                                                (s) => s !== school,
+                                            );
                                     } else {
-                                        selectedSchools = [...selectedSchools, school];
+                                        selectedSchools = [
+                                            ...selectedSchools,
+                                            school,
+                                        ];
                                     }
                                 }}
                             >
-                                <Category text={school} selected={selectedSchools.includes(school)} />
+                                <Category
+                                    text={school}
+                                    selected={selectedSchools.includes(school)}
+                                />
                             </button>
                         {/each}
                     </div>
@@ -179,7 +295,7 @@
                         <input
                             bind:value={links[index]}
                             on:input={(e) => updateLink(index, e.target.value)}
-                            class={`border-[2.5px] ${linkValidity[index] ? 'border-button' : 'border-red-500'} w-full bg-buttonText text-subText text-base px-4 py-2 rounded-xl font-medium focus:ring-0 focus:shadow-none focus:outline-none placeholder:text-left placeholder:align-top`}
+                            class={`border-[2.5px] ${linkValidity[index] ? "border-button" : "border-red-500"} w-full bg-buttonText text-subText text-base px-4 py-2 rounded-xl font-medium focus:ring-0 focus:shadow-none focus:outline-none placeholder:text-left placeholder:align-top`}
                             placeholder={`Link ${index + 1}`}
                             type="url"
                         />
@@ -202,9 +318,11 @@
 
             <!-- File Upload Section -->
             <div class="w-1/2">
-                <h2 class="text-xl font-medium text-button mb-2">Upload Files</h2>
+                <h2 class="text-xl font-medium text-button mb-2">
+                    Upload Files
+                </h2>
                 <div
-                    class={`border-[2.5px] border-dashed ${isDragging ? 'border-subText' : 'border-button'} w-full bg-buttonText text-subText text-base px-4 py-8 rounded-xl font-medium flex justify-center items-center cursor-pointer`}
+                    class={`border-[2.5px] border-dashed ${isDragging ? "border-subText" : "border-button"} w-full bg-buttonText text-subText text-base px-4 py-8 rounded-xl font-medium flex justify-center items-center cursor-pointer`}
                     on:dragover={handleFileDragOver}
                     on:dragleave={handleFileDragLeave}
                     on:drop={handleFileDrop}
@@ -213,7 +331,9 @@
                     {#if files.length > 0}
                         <ul>
                             {#each files as file, index}
-                                <li class="flex justify-between items-center gap-2 mb-1">
+                                <li
+                                    class="flex justify-between items-center gap-2 mb-1"
+                                >
                                     <span>{file.name}</span>
                                     <button
                                         on:click={() => removeFile(index)}
@@ -235,16 +355,19 @@
                     class="hidden"
                     multiple
                 />
-                <p class="text-sm text-subText mt-1">Maximum 5 files allowed.</p>
+                <p class="text-sm text-subText mt-1">
+                    Maximum 5 files allowed.
+                </p>
             </div>
         </div>
         <div class="h-full flex justify-center items-end pb-4">
-                <button
-                    class="bg-button text-white w-[10rem] h-14 rounded-xl  font-medium text-xl mt-2"
-                    disabled={links.length >= 3}
-                >
-                    Upload
-                </button>
+            <button
+                class="bg-button text-white w-[10rem] h-14 rounded-xl font-medium text-xl mt-2"
+                disabled={links.length >= 3}
+                on:click={createPost}
+            >
+                Upload
+            </button>
         </div>
     </div>
 </div>

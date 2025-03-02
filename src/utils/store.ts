@@ -1,4 +1,5 @@
-import {writable} from "svelte/store";
+import { writable } from "svelte/store";
+import type { Timestamp } from "firebase/firestore";
 
 export let slideToggle = writable(false);
 export let infoId = writable(0);
@@ -23,7 +24,7 @@ export let allCategories = [
     "Problem Solving",
     "Literature",
     "Summaries"
-  ];
+].map(category => category.toLowerCase());
 
 export let allSubjects = [
     "Math",
@@ -38,7 +39,7 @@ export let allSubjects = [
     "Geography",
     "Physical Education",
     "Computer Science"
-];
+].map(subject => subject.toLowerCase());
 
 export let allSchools = [
     "Greenwood High",
@@ -50,9 +51,13 @@ export let allSchools = [
     "Oakridge School",
     "Pine Valley High",
     "Cedarwood Academy"
-];
+].map(school => school.toLowerCase());
 
-export function reformatTimestamp(timestamp: string): string {
-    const date = new Date(timestamp);
-    return `${date.getUTCDate()}.${date.getUTCMonth() + 1}.${date.getUTCFullYear().toString().slice(-2)}`;
+export function formatFirestoreTimestamp(timestamp: Timestamp): string {
+    const date = timestamp.toDate();
+    const day = date.getDate().toString().padStart(2, "0");
+    // Get short month name, e.g., "Mar"
+    const month = date.toLocaleString("default", { month: "short" });
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}`;
 }
