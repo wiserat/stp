@@ -236,24 +236,61 @@
                 $allPosts[$searchViewId].timestamp,
             )} by
         </p>
-        <button class="hover:underline hover:opacity-100 opacity-65">
-            {$allPosts[$searchViewId].user}</button
-        >
+        {#if $allPosts[$searchViewId].user}
+            <a
+                href="/profile/{$allPosts[$searchViewId].user}"
+                class="hover:underline hover:opacity-100 opacity-65"
+            >
+                {$allPosts[$searchViewId].user}
+            </a>
+        {:else}
+            <span class="opacity-65">Untitled</span>
+        {/if}
     </div>
     <p class="mb-5 pr-6 leading-tight tracking-tight">
         {$allPosts[$searchViewId].description}
     </p>
     <div class="border-b-[1px] border-button/30" />
-    <p class="mb-5 opacity-40 font-light text-subText">Files coming soon</p>
-    <!--
-
-    <div class="flex flex-row items-center gap-2 mb-5">
-        {#each $allPosts[$searchViewId].filePaths as filePath}
-            <PeDoFile src={filePath} />
-        {/each}
+    <p class="mb-5 opacity-40 font-light text-subText">Files</p>
+    <div class="flex flex-row flex-wrap items-center gap-4 mb-5">
+        {#if $allPosts[$searchViewId].files && $allPosts[$searchViewId].files.length > 0}
+            {#each $allPosts[$searchViewId].files as file}
+                {#if file.type.startsWith("image/")}
+                    <a
+                        href={file.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group relative"
+                    >
+                        <img
+                            src={file.url}
+                            alt={file.name}
+                            class="w-32 h-32 object-cover rounded-xl hover:opacity-90 transition-opacity"
+                        />
+                        <div
+                            class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs p-1 rounded-b-xl opacity-0 group-hover:opacity-100 transition-opacity truncate"
+                        >
+                            {file.name}
+                        </div>
+                    </a>
+                {:else}
+                    <a
+                        href={file.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="flex items-center gap-2 bg-button/10 hover:bg-button/20 px-3 py-2 rounded-xl transition-colors"
+                    >
+                        <span class="text-sm">{file.name}</span>
+                        <span class="text-xs opacity-60"
+                            >({Math.round(file.size / 1024)} KB)</span
+                        >
+                    </a>
+                {/if}
+            {/each}
+        {:else}
+            <p class="text-subText">No files attached</p>
+        {/if}
     </div>
-                    -->
-
     <div class="border-b-[1px] border-button/30" />
     <p class="mb-3 opacity-40 font-light text-subText">Links</p>
     <div class="flex flex-col mb-7 leading-tight">

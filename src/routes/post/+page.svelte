@@ -6,22 +6,76 @@
     import { user } from "$lib/utils";
     import { goto } from "$app/navigation";
     import { signOut, type User } from "firebase/auth";
-    import { auth } from "$lib/firebase";
-    import { db } from "$lib/firebase";
-    import { collection, addDoc } from "firebase/firestore";
+    import { auth, db, storage } from "$lib/firebase";
+    import {
+        collection,
+        addDoc,
+        query,
+        where,
+        getDocs,
+        updateDoc,
+    } from "firebase/firestore";
+    import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
     let userData: User;
     onMount(() => {
-        const unsubscribe = user.subscribe((firebaseUser: User | null) => {
-            if (!firebaseUser) {
-                goto("/login");
-            } else {
-                console.log(firebaseUser);
-                userData = firebaseUser;
-            }
-        });
+        const unsubscribe = user.subscribe(
+            async (firebaseUser: User | null) => {
+                if (!firebaseUser) {
+                    goto("/login");
+                } else {
+                    console.log(firebaseUser);
+                    userData = firebaseUser;
+                    await fetchUploadedDocumentsCount();
+                    await fetchTotalLikes();
+                }
+            },
+        );
         return unsubscribe;
     });
+
+    let uploadedDocumentsCount = 0; // To store the count of uploaded documents
+
+    async function fetchUploadedDocumentsCount() {
+        if (!userData?.displayName) return;
+
+        try {
+            const postsRef = collection(db, "posts");
+            const q = query(
+                postsRef,
+                where("user", "==", userData.displayName),
+            );
+            const querySnapshot = await getDocs(q);
+
+            // Set the count of uploaded documents
+            uploadedDocumentsCount = querySnapshot.size;
+        } catch (error) {
+            console.error("Error fetching uploaded documents count:", error);
+        }
+    }
+
+    let totalLikes = 0; // To store the total likes for the user's posts
+
+    async function fetchTotalLikes() {
+        if (!userData?.displayName) return;
+
+        try {
+            const postsRef = collection(db, "posts");
+            const q = query(
+                postsRef,
+                where("user", "==", userData.displayName),
+            );
+            const querySnapshot = await getDocs(q);
+
+            // Calculate the total likes
+            totalLikes = querySnapshot.docs.reduce((sum, doc) => {
+                const data = doc.data();
+                return sum + (data.likes || 0); // Add the likes property, defaulting to 0 if undefined
+            }, 0);
+        } catch (error) {
+            console.error("Error fetching total likes:", error);
+        }
+    }
 
     async function logout() {
         try {
@@ -46,7 +100,7 @@
 
     async function createPost() {
         try {
-            // Add a new document to the "posts" collection
+            // Create a new document in the "posts" collection
             const docRef = await addDoc(collection(db, "posts"), {
                 name,
                 description,
@@ -56,12 +110,47 @@
                 links,
                 likes: 0,
                 views: 0,
-                // You can store metadata for files, if needed
-                // fileNames: files.map(file => file.name),
+                user: userData?.displayName,
                 timestamp: new Date(),
+                files: [], // Will be populated with file URLs
             });
+
+            // Upload files if any exist
+            if (files.length > 0) {
+                const fileUrls = await Promise.all(
+                    files.map(async (file) => {
+                        // Create a reference to the file in Firebase Storage
+                        const sanitizedName = name
+                            .replace(/[^a-zA-Z0-9-_]/g, "_")
+                            .toLowerCase();
+                        const storageRef = ref(
+                            storage,
+                            `posts/${sanitizedName}/${file.name}`,
+                        );
+
+                        // Upload the file
+                        await uploadBytes(storageRef, file);
+
+                        // Get the download URL
+                        const downloadUrl = await getDownloadURL(storageRef);
+
+                        return {
+                            name: file.name,
+                            url: downloadUrl,
+                            type: file.type,
+                            size: file.size,
+                        };
+                    }),
+                );
+
+                // Update the post document with file URLs
+                await updateDoc(docRef, {
+                    files: fileUrls,
+                });
+            }
+
+            // Create initial comment
             await addDoc(collection(db, "posts", docRef.id, "comments"), {
-                // Initial comment data if needed, or leave empty
                 user: "system",
                 content: "This is the first comment.",
                 likes: 0,
@@ -69,7 +158,7 @@
             });
 
             console.log("Document written with ID:", docRef.id);
-            // Reset form or redirect as needed
+            goto("/search");
         } catch (error) {
             console.error("Error adding document:", error);
         }
@@ -143,6 +232,12 @@
     }
 </script>
 
+<button
+    on:click={() => {
+        goto("/search");
+    }}
+    class="fixed top-5 left-5 text-button">Zpět</button
+>
 <div class="h-[98vh] w-screen flex justify-center">
     <div class="flex w-[65vw] flex-col">
         <div class="flex flex-row gap-5 mt-10 pl-10">
@@ -157,12 +252,12 @@
                 </h1>
                 <p class="text-subText text-xl">
                     Number of uploaded documents: <span class="font-bold"
-                        >19</span
+                        >{uploadedDocumentsCount}</span
                     >
                 </p>
                 <p class="text-subText text-xl">
-                    Average rating of uploaded documents: <span
-                        class="font-bold">🔥12</span
+                    Total rating on uploaded documents: <span class="font-bold"
+                        >{totalLikes}</span
                     >
                 </p>
                 <button
@@ -294,7 +389,10 @@
                     <div class="flex items-center gap-2 mb-2">
                         <input
                             bind:value={links[index]}
-                            on:input={(e) => updateLink(index, e.target.value)}
+                            on:input={(e) => {
+                                const target = e.currentTarget;
+                                updateLink(index, target.value);
+                            }}
                             class={`border-[2.5px] ${linkValidity[index] ? "border-button" : "border-red-500"} w-full bg-buttonText text-subText text-base px-4 py-2 rounded-xl font-medium focus:ring-0 focus:shadow-none focus:outline-none placeholder:text-left placeholder:align-top`}
                             placeholder={`Link ${index + 1}`}
                             type="url"
